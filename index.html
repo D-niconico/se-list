@@ -59,7 +59,6 @@
         { name: "飛天御剣流", cmd: "飛天御剣流", category: "るろうに剣心" },
         { name: "人の夢は終わらねェ", cmd: "人の夢は終わらねェ", category: "ワンピース" },
         { name: "愛してくれてありがとう", cmd: "愛してくれてありがとう", category: "ワンピース" },
-        // { name: "表示名", cmd: "読み上げテキスト", category: "カテゴリ名" }, ←この形式で増やせます
     ];
 
     const listContainer = document.getElementById('listContainer');
@@ -82,17 +81,29 @@
         });
     }
 
-    // タブの生成
+    // タブの生成（修正箇所：すべてボタンもここで作ります）
     function renderTabs() {
-        const categories = [...new Set(seList.map(item => item.category))];
+        tabsContainer.innerHTML = ''; // 既存のタブをリセット
+
+        // カテゴリのリストを作成
+        const categories = ['all', ...new Set(seList.map(item => item.category))];
+
         categories.forEach(cat => {
             const div = document.createElement('div');
-            div.className = 'tab';
-            div.innerText = cat;
+            div.className = (cat === currentCategory) ? 'tab active' : 'tab';
+            
+            // "all" の場合は日本語で「すべて」と表示
+            div.innerText = (cat === 'all') ? 'すべて' : cat;
+            
             div.onclick = () => {
+                // クリック時の動作
+                currentCategory = cat;
+                
+                // 見た目の更新
                 document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                 div.classList.add('active');
-                currentCategory = cat;
+                
+                // 検索（絞り込み）を実行
                 document.getElementById('searchInput').dispatchEvent(new Event('input'));
             };
             tabsContainer.appendChild(div);
@@ -102,6 +113,10 @@
     // リストの描画
     function renderList(items) {
         listContainer.innerHTML = '';
+        if (items.length === 0) {
+            listContainer.innerHTML = '<div style="padding:20px; text-align:center; color:#888;">見つかりませんでした</div>';
+            return;
+        }
         items.forEach(item => {
             const div = document.createElement('div');
             div.className = 'se-item';
@@ -120,10 +135,11 @@
     function copyText(text, btn) {
         navigator.clipboard.writeText(text).then(() => {
             showToast();
+            const originalText = btn.innerText;
             btn.innerText = '完了';
             btn.classList.add('copied');
             setTimeout(() => {
-                btn.innerText = 'コピー';
+                btn.innerText = originalText;
                 btn.classList.remove('copied');
             }, 2000);
         });
@@ -143,3 +159,4 @@
 </body>
 
 </html>
+
