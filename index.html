@@ -151,6 +151,13 @@
             white-space: nowrap; /* 文字を折り返さない */
         }
         .random-btn:active { transform: scale(0.95); }
+
+        /* ランダム時のみ表示するカテゴリ名 */
+        .se-category {
+            font-size: 0.8em;
+            color: #999;
+            margin-top: 2px;
+        }
         
     </style>
 </head>
@@ -329,18 +336,17 @@
         // ...他も同様
     ];
 
-// ▼▼▼ seListより下の行を、すべてこれに書き換えてください ▼▼▼
 
     const listContainer = document.getElementById('listContainer');
     const modalGrid = document.getElementById('modalGrid');
     const openFilterBtn = document.getElementById('openFilterBtn');
-    const randomBtn = document.getElementById('randomBtn'); // 新機能
+    const randomBtn = document.getElementById('randomBtn');
     const modal = document.getElementById('categoryModal');
     let currentCategory = 'all';
 
     function init() {
         renderModalButtons();
-        renderList(seList); // 最初は全表示
+        renderList(seList); // 最初は通常表示（カテゴリなし）
 
         // 検索機能
         document.getElementById('searchInput').addEventListener('input', runFilter);
@@ -349,23 +355,20 @@
         openFilterBtn.onclick = () => toggleModal(true);
         modal.onclick = (e) => { if (e.target === modal) toggleModal(false); };
 
-        // ★ランダム機能の実装
+        // ★ランダム機能
         randomBtn.onclick = () => {
             // 1. カテゴリ表示をリセット
             currentCategory = 'all';
             openFilterBtn.innerText = 'カテゴリを選択...';
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('current'));
-            document.getElementById('searchInput').value = ''; // 検索窓もクリア
+            document.getElementById('searchInput').value = '';
 
             // 2. 全リストをシャッフルして10個取り出す
             const shuffled = [...seList].sort(() => 0.5 - Math.random());
             const random10 = shuffled.slice(0, 10);
 
-            // 3. 表示
-            renderList(random10);
-            
-            // (オプション) ランダム表示中であることを通知したい場合
-            // listContainer.insertAdjacentHTML('afterbegin', '<div style="color:#e67e22; margin-bottom:10px; font-weight:bold;">🎲 ランダムに10個表示中</div>');
+            // 3. 表示（★ここで true を渡してカテゴリを表示させる）
+            renderList(random10, true);
         };
     }
 
@@ -376,7 +379,8 @@
             (item.name.toLowerCase().includes(keyword) || item.cmd.toLowerCase().includes(keyword)) &&
             (currentCategory === 'all' || item.category === currentCategory)
         );
-        renderList(filtered);
+        // 通常時はカテゴリ非表示（false）
+        renderList(filtered, false);
     }
 
     // モーダル開閉
@@ -405,8 +409,8 @@
         });
     }
 
-    // リスト描画
-    function renderList(items) {
+    // ★リスト描画（カテゴリ表示スイッチ付き）
+    function renderList(items, showCategory = false) {
         listContainer.innerHTML = '';
         if (items.length === 0) {
             listContainer.innerHTML = '<div style="padding:20px; text-align:center; color:#888;">見つかりませんでした</div>';
@@ -418,10 +422,15 @@
             
             const imgHtml = item.image ? `<img src="${item.image}" class="se-icon">` : '';
 
+            // ★showCategoryがtrueの時だけカテゴリ名のHTMLを作る
+            const categoryHtml = showCategory ? `<div class="se-category">${item.category}</div>` : '';
+
             div.innerHTML = `
                 <div class="se-content">
                     ${imgHtml}
-                    <div class="se-name">${item.name}</div>
+                    <div>
+                        <div class="se-name">${item.name}</div>
+                        ${categoryHtml} </div>
                 </div>
                 <button class="copy-btn" onclick="copyText('${item.cmd}', this)">コピー</button>
             `;
@@ -455,6 +464,7 @@
 </body>
 
 </html>
+
 
 
 
