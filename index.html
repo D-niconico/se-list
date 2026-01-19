@@ -67,10 +67,67 @@
 <script>
     // ▼ image: "画像ファイル名" を追加します（ない場合は image: "" でOK）
     const seList = [
-        { name: "だが断る", cmd: "だが断る", category: "ジョジョ", image: "jojo_icon.png" },
-        { name: "貧弱貧弱ゥ", cmd: "貧弱貧弱ゥ", category: "ジョジョ", image: "" }, // 画像なし
-        { name: "おろろ", cmd: "おろろ", category: "るろうに剣心", image: "kenshin.jpg" },
-        // ...他も同様
+        { name: "黙れェッ！", cmd: "黙れェッ！", category: "Diesirae", image: "" },
+        { name: "逃げては駄目だ。", cmd: "逃げては駄目だ。", category: "Diesirae", image: "" },
+        { name: "私の子を産みなさい", cmd: "私の子を産みなさい", category: "Diesirae", image: "" },
+        { name: "k(創造", cmd: "k(創造", category: "Diesirae", image: "" },
+        { name: "r(Briah", cmd: "r(Briah", category: "Diesirae", image: "" },
+        { name: "w(Briah", cmd: "w(Briah", category: "Diesirae", image: "" },
+        { name: "t(Briah", cmd: "t(Briah", category: "Diesirae", image: "" },
+        { name: "ほお・・・", cmd: "ほお・・・", category: "Diesirae", image: "" },
+        { name: "いいぞおまえ悪くねえ", cmd: "いいぞおまえ悪くねえ", category: "Diesirae", image: "" },
+        { name: "てめえ・・・いいぞ", cmd: "てめえ・・・いいぞ", category: "Diesirae", image: "" },
+        { name: "焼きうどん。豚肉山盛り。ニンニクびたびた", cmd: "焼きうどん。豚肉山盛り。ニンニクびたびた", category: "Diesirae", image: "" },
+        { name: "興奮してきたな", cmd: "興奮してきたな", category: "ぬきたし", image: "" },
+        { name: "ロリじゃないですけど", cmd: "ロリじゃないですけど", category: "ぬきたし", image: "" },
+        { name: "ろりじゃないですけど", cmd: "ろりじゃないですけど", category: "ぬきたし", image: "" },
+        { name: "ロリじゃありませんけど", cmd: "ロリじゃありませんけど", category: "ぬきたし", image: "" },
+        { name: "ろりじゃありませんけど", cmd: "ろりじゃありませんけど", category: "ぬきたし", image: "" },
+        { name: "わぁはぁ", cmd: "わぁはぁ", category: "じゃない方のずんだもん", image: "" },
+        { name: "オラァッ！", cmd: "オラァッ！", category: "じゃない方のずんだもん", image: "" },
+        { name: "やめるのだ！氏にたくねえのだ！", cmd: "やめるのだ！氏にたくねえのだ！", category: "じゃない方のずんだもん", image: "" },
+        { name: "えぇ？", cmd: "えぇ？", category: "じゃない方のずんだもん", image: "" },
+        { name: "おやぁ？", cmd: "おやぁ？", category: "じゃない方のずんだもん", image: "" },
+        { name: "んぅ？", cmd: "んぅ？", category: "じゃない方のずんだもん", image: "" },
+        { name: "再送はしないのだ", cmd: "再送はしないのだ", category: "じゃない方のずんだもん", image: "" },
+        { name: "アニ、落ちて", cmd: "アニ、落ちて", category: "じゃない方のずんだもん", image: "" },
+        { name: "イングウァードさぁん", cmd: "イングウァードさぁん", category: "じゃない方のずんだもん", image: "" },
+        { name: "壺三回ころりん、壺二回なのだ", cmd: "壺三回ころりん、壺二回なのだ", category: "じゃない方のずんだもん", image: "" },
+        { name: "ニニニニニン", cmd: "ニニニニニン", category: "遊戯王", image: "" },
+        { name: "これでどうやって戦えばいいんだ", cmd: "これでどうやって戦えばいいんだ", category: "遊戯王", image: "" },
+        { name: "なぁにこれぇ", cmd: "なぁにこれぇ", category: "遊戯王", image: "" },
+        { name: "ふうん", cmd: "ふうん", category: "遊戯王", image: "" },
+        { name: "お前、弱いだろ", cmd: "お前、齢だろ", category: "遊戯王", image: "" },
+        { name: "爆☆殺", cmd: "爆☆札", category: "遊戯王", image: "" },
+        { name: "カンコーン", cmd: "カンコーン", category: "遊戯王", image: "" },
+        { name: "ヨシ！", cmd: "ヨシ！", category: "遊戯王", image: "" },
+        { name: "それはどうかな", cmd: "それはどうかな", category: "遊戯王", image: "" },
+        { name: "ヤバイって", cmd: "ヤバイって", category: "遊戯王", image: "" },
+        { name: "負けたくないぃぃぃ！！！", cmd: "負けたくないぃぃぃ！！！", category: "遊戯王", image: "" },
+        { name: "まるで意味がわからんぞ！", cmd: "まるで意味がわからんぞ！", category: "遊戯王", image: "" },
+        { name: "なんで俺に気持ちよくデュエルさせねえんだ！", cmd: "なんで俺に気持ちよくデュエルさせねえんだ！", category: "遊戯王", image: "" },
+        { name: "そこしれぬ絶望の淵へ沈め！", cmd: "そこしれぬ絶望の淵へ沈め！", category: "遊戯王", image: "" },
+        { name: "俺がこの場所で敗北するなど許されるはずはない", cmd: "俺がこの場所で敗北するなど許されるはずはない", category: "遊戯王", image: "" },
+        { name: "伝説って？", cmd: "伝説って？", category: "遊戯王", image: "" },
+        { name: "ああ！", cmd: "ああ！", category: "遊戯王", image: "" },
+        { name: "デュエル開始の宣言をしろ！磯野！", cmd: "デュエル開始の宣言をしろ！磯野！", category: "遊戯王", image: "" },
+        { name: "決闘開始ィィィ", cmd: "決闘開始ィィィ", category: "遊戯王", image: "" },
+        { name: "意味不明のカード", cmd: "意味不明のカード", category: "遊戯王", image: "" },
+        { name: "馬鹿げてるぜ", cmd: "莫迦げてるぜ", category: "遊戯王", image: "" },
+        { name: "俺からすればまだ地味すぎるぜ", cmd: "俺からすればまだ地味すぎるぜ", category: "遊戯王", image: "" },
+        { name: "もっと腕にシルバー巻くとかさ", cmd: "もっと腕にシルバー巻くとかさ", category: "遊戯王", image: "" },
+        { name: "ショットガンシャッフルはカードを傷めるぜ", cmd: "ショットガンシャッフルはカードを傷めるぜ", category: "遊戯王", image: "" },
+        { name: "トムの勝ちデース", cmd: "トムの勝ちデース", category: "遊戯王", image: "" },
+        { name: "HA☆NA☆SE", cmd: "HA☆NA☆SE", category: "遊戯王", image: "" },
+        { name: "ふつくしい", cmd: "ふつくしい", category: "遊戯王", image: "" },
+        { name: "この屈辱許しはせん", cmd: "この屈辱許しはせん", category: "遊戯王", image: "" },
+        { name: "全速前進DA！", cmd: "全速前進DA！", category: "遊戯王", image: "" },
+        { name: "次回、城之内死す", cmd: "次回、城之内しす", category: "遊戯王", image: "" },
+        { name: "グォレンダァ！", cmd: "グォレンダァ！", category: "遊戯王", image: "" },
+        { name: "強靭、無敵、最強", cmd: "強靭、無敵、最強", category: "遊戯王", image: "" },
+        { name: "粉砕、玉砕、大喝采", cmd: "粉砕、玉砕、大喝采", category: "遊戯王", image: "" },
+        { name: "ミルクでも貰おうか", cmd: "ミルクでも貰おうか", category: "遊戯王", image: "" },
+        { name: "ここでジャンク・ウォリアーだと！？", cmd: "ここでジャンク・ウォリアーだと！？", category: "遊戯王", image: "" },        // ...他も同様
     ];
 
     const listContainer = document.getElementById('listContainer');
@@ -159,6 +216,7 @@
 </body>
 
 </html>
+
 
 
 
